@@ -1,0 +1,13 @@
+# Ignore node modules
+book-frontend/node_modules/
+book-backend/node_modules/
+
+# Ignore environment files
+*.env
+
+# Ignore logs
+*.log
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
