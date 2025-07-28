@@ -62,6 +62,12 @@ function Register() {
           Register
         </button>
       </form>
+      <p style={{ marginTop: '1rem' }}>
+  Already registered?{' '}
+  <a href="/login" style={{ color: 'blue', textDecoration: 'underline' }}>
+    Login
+  </a>
+</p>
     </div>
   );
 }
