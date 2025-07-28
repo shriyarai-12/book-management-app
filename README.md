@@ -54,10 +54,15 @@ This project is a full-stack Book Management application with user authenticatio
    ```sh
    npm install
    ```
+
 3. Start the frontend app:
    ```sh
    npm start
    ```
+
+Once the frontend is running, visit [http://localhost:3000/login](http://localhost:3000/login) to access the login page.
+
+
 
 ## Environment Variables
 - Update the JWT secret and MongoDB URI as needed in the backend.
