@@ -36,13 +36,16 @@ app.options('*', cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/bookdb', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('✅ MongoDB connected'))
-.catch(err => console.error('❌ MongoDB connection error:', err));
-
+mongoose.connect(
+  'mongodb+srv://shriya:9s8h6r7i@cluster0.mpsogte.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
+  {
+    
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+)
+.then(() => console.log('✅ Connected to MongoDB Atlas'))
+.catch((err) => console.error('❌ MongoDB connection error:', err));
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);

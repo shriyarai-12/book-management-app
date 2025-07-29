@@ -64,11 +64,11 @@ const BookList = () => {
       alert('Error deleting book. Check permissions.');
     }
   };
+const handleUpdate = (book) => {
+  navigate(`/edit-book/${book._id}`);
+};
 
-  const handleUpdate = (book) => {
-    alert(`✏️ You clicked update for "${book.title}"`);
     // You can navigate to edit-book route here if you have one
-  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
