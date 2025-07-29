@@ -49,8 +49,6 @@ app.get('/api/ping', (req, res) => {
   res.json({ message: 'Backend running!' });
 });
 
-// ✅ Paste this at the bottom
-const path = require('path');
 // ✅ Serve React frontend build
 app.use(express.static(path.join(__dirname, 'frontend/build')));
 
