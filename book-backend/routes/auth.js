@@ -20,7 +20,7 @@ router.post('/register', async (req, res) => {
     const newUser = new User({
       username,
       password: hashedPassword,
-      role: role.trim().toLowerCase(), // safe usage now
+      role: (role || 'user').trim().toLowerCase(), // safe usage now
     });
 
     await newUser.save();
