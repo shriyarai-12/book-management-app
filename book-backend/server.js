@@ -1,21 +1,18 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const cors = require('cors'); // ✅ import CORS
+const cors = require('cors');
+const path = require('path'); // ✅ Added
 const authRoutes = require('./routes/auth');
 const bookRoutes = require('./routes/book');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
+// ✅ Allow CORS from specific origins
 const allowedOrigins = [
   'http://localhost:3000',
-  'http://localhost:3001',
-  'http://localhost:3002',
-  'http://localhost:3003',
-  'http://localhost:3004',
-  'http://localhost:3005',
-  'http://localhost:3006',
+  'https://your-frontend-domain.com', // Replace with actual frontend domain if deployed separately
 ];
 
 app.use(cors({
@@ -29,8 +26,7 @@ app.use(cors({
   credentials: true
 }));
 
-// ✅ Handle preflight requests
-app.options('*', cors());
+app.options('*', cors()); // preflight
 
 // Middleware
 app.use(bodyParser.json());
@@ -39,28 +35,30 @@ app.use(bodyParser.json());
 mongoose.connect(
   'mongodb+srv://shriya:9s8h6r7i@cluster0.mpsogte.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
   {
-    
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
 )
 .then(() => console.log('✅ Connected to MongoDB Atlas'))
-.catch((err) => console.error('❌ MongoDB connection error:', err));
+.catch((err) => console.error('❌ MongoDB connection error:', err));
+
 // Routes
-app.get('/', (req, res) => {
-  res.send('Book Management API is running 🚀');
-});
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
-
-// Test route
 app.get('/api/ping', (req, res) => {
   res.json({ message: 'Backend running!' });
 });
 
-app.listen(PORT, () => {
-  console.log( 'Server running at http://localhost:5000');
+// ✅ Paste this at the bottom
+const path = require('path');
+// ✅ Serve React frontend build
+app.use(express.static(path.join(__dirname, 'frontend/build')));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'frontend/build/index.html'));
 });
-app.get('/', (req, res) => {
-  res.send('Book Management API is running 🚀');
+
+// Server
+app.listen(PORT, () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
