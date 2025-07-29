@@ -97,7 +97,7 @@ Update the API URL in the deployed app to point to your live backend.
 
 
 ## *Deployment link:
-REACT_APP_API_BASE_URL=[https://book-backend-bmpr.onrender.com/api]
+REACT_APP_API_BASE_URL=https://book-backend-bmpr.onrender.com/books
 
 License
 MIT
